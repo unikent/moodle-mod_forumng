@@ -527,7 +527,7 @@ $mainquery", $mainparams);
             $userdigests[$user->id]->forumngid = -1;
 
             // Get header text
-            $headerdata = new object();
+            $headerdata = new \stdClass();
             $headerdata->sitename = format_string($course->fullname, true);
             $headerdata->userprefs = $CFG->wwwroot . '/user/edit.php?id=' .
                 $user->id . '&amp;course=' . $course->id;
@@ -772,7 +772,7 @@ $mainquery", $mainparams);
             // From support user
             static $supportuser;
             if (!$supportuser) {
-                $supportuser = generate_email_supportuser();
+                $supportuser = \core_user::get_support_user();
             }
             $mail->Sender = $supportuser->email;
 
